@@ -1,14 +1,15 @@
 <h5>Comments:</h5>
-          
-        <div class="row">
-          <div class="span0 well text-center comment_votes">
-            <span id="comment_9_votes">4</span> votes
-            <br>
-          </div>
-          <div class="well span8">
-            <em>"Up to date news."</em>
-            <br>
-            <span class="quiet">by</span> <a href="/users/chris">chris</a>
-            <small> at 09/11/2013 10:48pm EDT</small>
-          </div>
-        </div>
+<% @comments.each do |comment| %>           
+<div class="row">
+  <div class="span0 well text-center comment_votes">
+    <span id="comment_9_votes">xxxxx</span> votes
+    <br>
+  </div>
+  <div class="well span8">
+    <em><%= comment.body %> </em>
+    <br>
+    <span class="quiet">by</span> <a href="/users/chris">xxxxx</a>
+    <small> at xxxx 10:48pm EDT</small>
+  </div>
+</div>
+<% end %>         

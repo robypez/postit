@@ -23,7 +23,6 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    binding.pry
     @category = Category.new(post_params)
     if @category.save
       flash[:notice] = "Category created"

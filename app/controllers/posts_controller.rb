@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, except: [ :index, :new, :create ]
+
   def index
     @posts = Post.all
 
@@ -10,8 +12,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post  = Post.find(params[:id])
-    @comment = Comment.new
+    @comment = Comment.new(post: @post)
+    @comments = @post.comments.order(created_at: :desc)
 
     respond_to do |format|
       format.html
@@ -21,11 +23,13 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @categories = Category.all
   end
 
   def create
-    binding.pry
     @post = Post.new(post_params)
+    category = Category.find(params[:category_ids])
+    @post << category
     if @post.save
       flash[:notice] = "Post created"
       redirect_to post_path(@post)
@@ -36,12 +40,12 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post  = Post.find(params[:id])
+    @categories = Category.all
     render 'edit'
   end
 
   def update
-    @post = Post.find(params[:id])
+    binding.pry
     if @post.update_attributes(post_params)
       flash[:notice] = "Post updated"
       redirect_to post_path(@post)
@@ -56,6 +60,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :url, :description)
+  end
+
+  def set_post 
+    @post  = Post.find(params[:id])
   end
 
 
