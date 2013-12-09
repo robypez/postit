@@ -1,0 +1,47 @@
+<div id="main" role="main">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <p>
+          <span class="badge">
+            <a href="/categories/news">News</a>
+          </span>
+        </p>
+        <%= render 'shared/content_title', title: @post.title %>
+
+          <hr>
+        <p></p>
+
+        <p>
+          <%= @post.description %>
+        </p>
+
+        <% form_for @comment do |f| %>
+          <fieldset>
+          <div class="control-group">
+            <div class="field_with_errors">
+              <label for="comment_body">Leave a comment</label>
+            </div>
+            <div class="field_with_errors">
+            <%= f.label :body %>
+            <%= f.text_field :body %>
+            </div>
+          </div>
+            <%= f.submit "Save" , :class => 'btn btn-primary ' %>
+          </fieldset>
+        <% end %>
+       
+        <hr>
+        <%= render "comment" %>
+      </div>
+    </div>
+    <footer>
+    </footer>
+  </div> <!--! end of .container -->
+</div>
+
+
+  
+
+
+

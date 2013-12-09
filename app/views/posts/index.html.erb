@@ -1,3 +1,32 @@
-<h3>Welcome!</h3>
+<p class="lead">
+  All Posts
+</p>
+<hr>
+<% @posts.each do |post| %> 
 
-<p>This is the Postit template. You've access the PostsController, index action. This is the index template. Find me under app/views/posts folder.</p>
+<div class="row">
+  <div class="span0 well text-center">
+    <span id="post_3_votes">xx</span> xxxxx
+    <br>
+  </div>
+  <div class="span8 well">
+    <span class="badge">
+    <a href="/categories/news">Category</a>
+    </span>
+
+    <h4><%= link_to post.title, post_path(post.id) %></h4>
+    <p>
+      <%=post.description%>
+    </p>
+    <p>
+      <span class="quiet">posted by</span> user
+      <small> at 09/05/2013  3:38am EDT</small>
+    </p>
+    <small>
+      <span>
+        <a href="/posts/cnn-news">12 comments</a>
+      </span>
+    </small>
+  </div>
+</div>
+<% end %> 
