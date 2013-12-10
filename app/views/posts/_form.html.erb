@@ -11,12 +11,14 @@
     </div>
     <div class="control-group">
       <%= f.label :category %>
-      <% @categories.each do |c| %>
+      
+
     <div>
-      <%= check_box_tag(:category_ids[c.id]) %>
-      <%= label_tag :category_ids, c.name ,  :class => 'checkbox inline' %>
+      <%= collection_check_boxes(:post, :category_ids, Category.all, :id, :name) %>
+      
     </div>
-  <% end %>
+
+
     </div>
     <div class="control-group">
       <%= f.label :url %>

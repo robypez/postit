@@ -11,11 +11,9 @@ class CategoriesController < ApplicationController
 
   def show
     @category  = Category.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.yaml { render text:@category.to_yaml }
-    end
+    @posts = @category.posts
+    @title = "#{@category.name} > Posts"
+    render 'posts/index'
   end
 
   def new

@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       redirect_to post_path(@post)
     else
       flash[:error] = @comment.errors
-      render post_path(@post)
+      render 'posts/show'
     end
   end
 

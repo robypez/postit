@@ -1,6 +1,4 @@
-<p class="lead">
-  All Posts
-</p>
+<%= render 'shared/content_title', title: @title %>
 <hr>
 <% @posts.each do |post| %> 
 
@@ -10,10 +8,11 @@
     <br>
   </div>
   <div class="span8 well">
+    <% post.categories.each do |cat| %> 
     <span class="badge">
-    <a href="/categories/news">Category</a>
+    <%= link_to cat.name, category_path(cat.id) %>
     </span>
-
+    <% end %> 
     <h4><%= link_to post.title, post_path(post.id) %></h4>
     <p>
       <%=post.description%>

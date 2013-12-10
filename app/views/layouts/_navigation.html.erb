@@ -8,6 +8,19 @@
   <li>
     <%= link_to 'New post', new_post_path %>
   </li>
+  <div class="btn-group nav_item">
+  <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+    Categories <span class="caret"></span>
+  </a>  
+  <ul class="dropdown-menu">
+      <% Category.all.each do |cat| %>
+      <li>
+        <%= link_to cat.name, category_path(id: cat.id) %>
+      </li>
+      <% end %>
+  </ul>
+</div>
+
   <li>
     <%= link_to 'New category', new_category_path %>
   </li>

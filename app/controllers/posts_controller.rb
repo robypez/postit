@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, except: [ :index, :new, :create ]
 
   def index
+    @title = "All posts"
     @posts = Post.all
 
     respond_to do |format|
@@ -28,8 +29,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    category = Category.find(params[:category_ids])
-    @post << category
     if @post.save
       flash[:notice] = "Post created"
       redirect_to post_path(@post)
@@ -45,7 +44,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    binding.pry
     if @post.update_attributes(post_params)
       flash[:notice] = "Post updated"
       redirect_to post_path(@post)
@@ -59,7 +57,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :url, :description)
+    params.require(:post).permit(:title, :url, :description, {:category_ids =>[]})
   end
 
   def set_post 
