@@ -19,11 +19,11 @@
     </p>
     <p>
       <span class="quiet">posted by</span> user
-      <small> at xxxxx  3:38am EDT</small>
+      <small>at <%= time_tag post.created_at %></small>
     </p>
     <small>
       <span>
-        <a href="/posts/cnn-news">xxxxx comments</a>
+        <%= link_to pluralize( post.comments.count, 'comment'), post_path(post) %>
       </span>
     </small>
   </div>
